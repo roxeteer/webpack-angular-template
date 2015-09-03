@@ -1,0 +1,8 @@
+.example {
+  font-style: italic;
+  cursor: pointer;
+
+  .clicked & {
+    color: red;
+  }
+}

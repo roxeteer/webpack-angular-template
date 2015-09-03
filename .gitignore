@@ -1,0 +1,8 @@
+.env
+.DS_Store
+npm-debug.log
+/.idea
+/dist
+/node_modules
+/karma_html
+/build
