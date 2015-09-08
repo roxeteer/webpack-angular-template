@@ -1,7 +1,7 @@
-module.exports = [
-  // list dependencies here…
-  
-  function() {
-    this.name = 'world';
-  }
-];
+module.exports = ExampleController;
+
+ExampleController.$inject = [];
+
+function ExampleController() {
+  this.name = 'world';
+}

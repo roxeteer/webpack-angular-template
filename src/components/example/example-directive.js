@@ -6,14 +6,15 @@ module.exports = [
         name: '='
       },
       template: require('./example-directive.html'),
-      controller: [
-        '$element',
-        function($element) {
-          $element.on('click', () => $element.toggleClass('clicked'));
-        }
-      ],
+      controller: ExampleDirectiveController,
       controllerAs: 'vm',
       bindToController: true
     };
   }
 ];
+
+ExampleDirectiveController.$inject = ['$element'];
+
+function ExampleDirectiveController($element) {
+  $element.on('click', () => $element.toggleClass('clicked'));
+}
