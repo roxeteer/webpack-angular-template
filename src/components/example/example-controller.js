@@ -1,6 +1,7 @@
 module.exports = [
-  '$scope',
-  function($scope) {
-    $scope.name = 'world';
+  // list dependencies here…
+  
+  function() {
+    this.name = 'world';
   }
 ];

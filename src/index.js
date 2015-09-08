@@ -39,7 +39,8 @@ angular.module(APP_NAME, [
         views: {
           'root': {
             template: require('./components/example/example.html'),
-            controller: require('./components/example/example-controller')
+            controller: require('./components/example/example-controller'),
+            controllerAs: 'root'
           }
         },
       });

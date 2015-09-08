@@ -19,7 +19,7 @@ $ npm install
 ## Run in development
 
 ```bash
-$ npm run dev
+$ npm start
 ```
 
 By default, the server runs at [http://localhost:8080](http://localhost:8080).
@@ -27,7 +27,7 @@ By default, the server runs at [http://localhost:8080](http://localhost:8080).
 To use different port, run it with:
 
 ```bash
-$ npm run dev -- --port 8081
+$ npm start -- --port 8081
 ```
 
 ## Create deployment package

@@ -6,9 +6,14 @@ module.exports = [
         name: '='
       },
       template: require('./example-directive.html'),
-      link: function(scope, element) {
-        element.on('click', () => element.toggleClass('clicked'));
-      }
+      controller: [
+        '$element',
+        function($element) {
+          $element.on('click', () => $element.toggleClass('clicked'));
+        }
+      ],
+      controllerAs: 'vm',
+      bindToController: true
     };
   }
 ];

@@ -4,7 +4,7 @@
   "description": "Webpack + Angular.js application template",
   "main": "src/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --devtool source-map --progress --colors --hot --content-base src --history-api-fallback",
+    "start": "webpack-dev-server --inline --devtool source-map --progress --colors --hot --content-base src --history-api-fallback",
     "build": "NODE_ENV=production webpack -p --progress",
     "test": "karma start ./karma.conf.js --single-run"
   },
