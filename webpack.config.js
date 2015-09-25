@@ -6,6 +6,7 @@ var autoprefixer = require('autoprefixer-core');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
 
 var definePlugin = new webpack.DefinePlugin({
   // define globals here, remember to use JSON.stringify
@@ -19,10 +20,14 @@ var includeSourceMaps = isProduction ? 'false' : 'true';
 module.exports = {
   quiet: false,
   context: path.resolve(__dirname, 'src'),
-  entry: './index.js',
+  entry: {
+    app: './index.js',
+    vendor: ['angular', 'lodash', 'restangular', 'angular-animate', 'angular-messages',
+      'angular-ui-router']
+  },
   output: {
     path: path.resolve(__dirname, isProduction ? 'dist' : 'src'),
-    filename: 'bundle.js'
+    filename: isProduction ? '[name]-[chunkhash].js' : '[name]-[hash].js'
   },
   module: {
     loaders: [
@@ -44,8 +49,7 @@ module.exports = {
         )
       },
       { test: /\.html$/, loader: 'html?name=[name]-[hash:6].[ext]' },
-      { test: /\.(jpg|gif|svg)$/, loader: 'file?name=[name]-[hash:6].[ext]' },
-      { test: /\.png$/, loader: 'url?mimetype=image/png' }
+      { test: /\.(jpg|gif|svg|png)$/, loader: 'file?name=[name]-[hash:6].[ext]' }
     ]
   },
   postcss: [
@@ -53,13 +57,14 @@ module.exports = {
   ],
   plugins: [
     definePlugin,
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new WebpackMd5Hash(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
     new HtmlWebpackPlugin({
       template: 'src/_index.html',
-      inject: 'body',
-      minify: true,
-      hash: true
+      inject: 'body'
     }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles-[hash:6].css')
   ]
 };
